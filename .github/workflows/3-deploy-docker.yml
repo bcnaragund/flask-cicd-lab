@@ -46,6 +46,7 @@ jobs:
   deploy:
     needs: build-and-push  # runs only after the image is on Docker Hub
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Pull and run the new container on EC2
         uses: appleboy/ssh-action@v1
@@ -64,3 +65,4 @@ jobs:
             sleep 5
             curl --fail http://localhost/health
             docker image prune -f
+    
