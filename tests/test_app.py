@@ -34,3 +34,7 @@ def test_greet_without_name_is_rejected(client):
 def test_add_two_numbers(client):
     response = client.get("/api/add?a=2&b=3")
     assert response.get_json()["result"] == 5
+
+def test_add_with_non_number_is_rejected(client):
+    response = client.get("/api/add?a=x&b=3")
+    assert response.status_code == 400
